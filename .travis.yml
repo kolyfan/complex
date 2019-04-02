@@ -1,0 +1,23 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t kolyfan/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run kolyfan/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t kolyfan/complex-client ./client
+  - docker build -t kolyfan/complex-nginx ./nginx
+  - docker build -t kolyfan/complex-server ./server
+  - docker build -t kolyfan/complex-worker ./worker
+  # Log in to docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push kolyfan/complex-client
+  - docker push kolyfan/complex-nginx
+  - docker push kolyfan/complex-server
+  - docker push kolyfan/complex-worker
+  
