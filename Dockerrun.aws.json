@@ -3,7 +3,9 @@
     "containerDefinitions": [
         {
             "name": "client",
-            "image": ""
+            "image": "kolyfan/complex-client",
+            "hostname": "client",
+            "essential": false
         }
     ]
 }
