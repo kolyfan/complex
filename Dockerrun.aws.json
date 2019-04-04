@@ -6,6 +6,31 @@
             "image": "kolyfan/complex-client",
             "hostname": "client",
             "essential": false
+        },
+        {
+            "name": "server",
+            "image": "kolyfan/complex-server",
+            "hostname": "api",
+            "essential": false
+        },
+        {
+            "name": "worker",
+            "image": "kolyfan/complex-worker",
+            "hostname": "worker",
+            "essential": false
+        },
+        {
+            "name": "nginx",
+            "image": "kolyfan/complex-nginx",
+            "hostname": "nginx",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+            "links": ["client", "server"]
         }
     ]
 }
