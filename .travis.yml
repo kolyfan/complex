@@ -13,16 +13,12 @@ after_success:
   - docker build -t kolyfan/complex-nginx ./nginx
   - docker build -t kolyfan/complex-server ./server
   - docker build -t kolyfan/complex-worker ./worker
-  # Log in to docker CLI
-  # - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker login -u "$DOCKER_ID" -p "$DOCKER_PASSWORD"
-  # Take those images and push them to docker hub
   - docker push kolyfan/complex-client
   - docker push kolyfan/complex-nginx
   - docker push kolyfan/complex-server
   - docker push kolyfan/complex-worker
 
-before_deploy: "echo 'ready?'"
 delpoy:
   provider: elasticbeanstalk
   region: "us-east-2"
