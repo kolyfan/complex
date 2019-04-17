@@ -19,8 +19,8 @@ after_success:
   - docker push kolyfan/complex-server
   - docker push kolyfan/complex-worker
 
-delpoy:
-  provider: elasicbeanstalk
+deploy:
+  provider: elasticbeanstalk
   region: "us-east-2"
   app: "complex-docker"
   env: "ComplexDocker-env"
