@@ -22,15 +22,16 @@ after_success:
   - docker push kolyfan/complex-server
   - docker push kolyfan/complex-worker
 
+before_deploy: "echo 'ready?'"
 delpoy:
   provider: elasticbeanstalk
-  region: us-east-2
-  app: complex-docker
-  env: ComplexDocker-env
-  bucket_name: elasticbeanstalk-us-east-2-449762762381
-  bucket_path: docker-complex
+  region: "us-east-2"
+  app: "complex-docker"
+  env: "ComplexDocker-env"
+  bucket_name: "elasticbeanstalk-us-east-2-449762762381"
+  bucket_path: "complex-docker"
   on:
     branch: master
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key:
-    secure: $AWS_SECRET_KEY
+    secure: "$AWS_SECRET_KEY"
